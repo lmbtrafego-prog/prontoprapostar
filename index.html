@@ -30,23 +30,23 @@ a[style*="border-radius: 999px"]:hover{opacity:.88}
 .phone--front{right:0;top:56px;transform:rotate(4deg);box-shadow:0 30px 80px rgba(0,0,0,.5)}
 .hero-tag{position:absolute;left:50%;bottom:-6px;transform:translateX(-50%);white-space:nowrap;padding:8px 14px;border-radius:999px;background:#D7F75B;color:#1B1630;font-weight:700;font-size:13px}
 @media(max-width:600px){.hero-phones{min-height:470px;max-width:340px}.hero-tag{bottom:-28px}}
-.tour{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}
-.tour__item{margin:0;display:flex;flex-direction:column;gap:16px}
-.tour .phone{aspect-ratio:420/830}
-.tour .phone img{height:100%;object-fit:cover;object-position:top}
-.tour__item figcaption{font-size:15px;line-height:1.5;color:#5B5670;display:flex;flex-direction:column;gap:4px}
-.tour__item figcaption strong{font-size:18px;color:#1B1630}
-.tour__n{width:30px;height:30px;border-radius:999px;background:#1B1630;color:#FFFFFF;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;margin-bottom:4px}
-.ref-hotspot{position:absolute;left:6%;right:6%;top:13.5%;height:9%;border:0;border-radius:14px;background:rgba(215,247,91,.25);box-shadow:0 0 0 3px #D7F75B;cursor:pointer;display:flex;align-items:center;justify-content:flex-end;padding:0 8px;animation:pulso 1.8s ease-in-out infinite}
-.ref-hotspot[hidden]{display:none}
-.ref-hotspot span{padding:6px 12px;border-radius:999px;background:#D7F75B;color:#1B1630;font:700 13px Inter,sans-serif;white-space:nowrap}
-@keyframes pulso{0%,100%{box-shadow:0 0 0 3px #D7F75B}50%{box-shadow:0 0 0 8px rgba(215,247,91,.35)}}
-@media(prefers-reduced-motion:reduce){.ref-hotspot{animation:none}}
-.reel-modal{border:0;padding:0;border-radius:20px;width:min(400px,92vw);height:min(720px,86vh);background:#FFFFFF;overflow:visible}
-.reel-modal::backdrop{background:rgba(18,15,34,.8)}
-.reel-modal iframe{width:100%;height:100%;border:0;border-radius:20px}
-.reel-modal__close{position:absolute;top:-14px;right:-14px;width:44px;height:44px;border-radius:999px;border:0;background:#D7F75B;color:#1B1630;font-size:28px;line-height:1;cursor:pointer}
-@media(max-width:900px){.tour{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:minmax(230px,62%);overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:24px;padding-bottom:12px;margin:0 -24px;padding-left:24px;padding-right:24px}.tour__item{scroll-snap-align:start}}
+.demo{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) 320px;grid-template-areas:"topo video" "resto video";column-gap:72px;row-gap:24px;align-items:start}
+.demo__topo{grid-area:topo;display:flex;flex-direction:column;gap:18px}
+.demo__resto{grid-area:resto;display:flex;flex-direction:column;gap:18px}
+.demo__video{grid-area:video;align-self:center}
+@media(max-width:860px){.demo{grid-template-columns:minmax(0,1fr);grid-template-areas:"topo" "video" "resto";row-gap:32px}}
+.demo__frase{margin:0;font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(1.3rem,2.2vw,1.65rem);line-height:1.35;padding:20px 24px;border-radius:20px;background:#F4F1FB;border:2px solid #1B1630}
+.demo__passos{margin:6px 0 8px;padding:0;list-style:none;counter-reset:p;display:flex;flex-direction:column;gap:14px}
+.demo__passos li{counter-increment:p;position:relative;padding-left:46px;font-size:16px;line-height:1.5;color:#5B5670;display:flex;flex-direction:column}
+.demo__passos li::before{content:counter(p);position:absolute;left:0;top:0;width:30px;height:30px;border-radius:999px;background:#D7F75B;color:#1B1630;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center}
+.demo__passos strong{color:#1B1630;font-size:17px}
+.demo__video{display:flex;flex-direction:column;align-items:center;gap:14px}
+.phone--video{width:min(320px,100%);aspect-ratio:720/1280;background:#000}
+.phone--video video{display:block;width:100%;height:100%;object-fit:cover}
+.play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:84px;height:84px;border-radius:999px;border:0;background:#D7F75B;color:#1B1630;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 0 0 10px rgba(215,247,91,.3),0 12px 30px rgba(0,0,0,.35);padding:0 0 0 4px}
+.play:hover{transform:translate(-50%,-50%) scale(1.06)}
+.play[hidden]{display:none}
+.demo__legenda{font-size:14px;font-weight:600;color:#5B5670}
 .reels{display:flex;flex-wrap:wrap;justify-content:center;gap:16px}
 .reel{margin:0;flex:0 0 calc((100% - 96px)/7);min-width:0}
 .reel__img{border-radius:18px;overflow:hidden;aspect-ratio:270/428;background:#ECE8F6}
@@ -56,19 +56,17 @@ a[style*="border-radius: 999px"]:hover{opacity:.88}
 a:focus-visible,button:focus-visible{outline:3px solid #D7F75B;outline-offset:3px}
 </style>
 
-<!-- PIXEL DA META: substitua SEU_PIXEL_ID pelo ID do seu pixel (2 lugares) e apague as linhas "PIXEL-INICIO" e "PIXEL-FIM"
-PIXEL-INICIO
+<!-- Pixel da Meta -->
 <script>
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
 n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
 n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
 t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
 document,'script','https://connect.facebook.net/en_US/fbevents.js');
-fbq('init','SEU_PIXEL_ID');fbq('track','PageView');
+fbq('init','2357482908345651');fbq('track','PageView');
 document.addEventListener('click',function(ev){var a=ev.target.closest('a[href*="pay.hotmart.com"]');if(a)fbq('track','InitiateCheckout');});
 </script>
-<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=SEU_PIXEL_ID&ev=PageView&noscript=1"></noscript>
-PIXEL-FIM -->
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=2357482908345651&ev=PageView&noscript=1"></noscript>
 </head>
 <body>
 <div style="width: 100%; font-family: Inter, system-ui, sans-serif; color: #1B1630; background: #FFFFFF">
@@ -212,52 +210,38 @@ PIXEL-FIM -->
 
 <!-- POR DENTRO DO PLANO -->
 <section style="padding: 0 24px 96px">
-<div style="max-width: 1180px; margin: 0 auto; display: flex; flex-direction: column; gap: 40px">
-<div style="display: flex; flex-direction: column; gap: 12px; max-width: 760px">
+<div class="demo">
+<div class="demo__topo">
 <span style="font-size: 15px; font-weight: 700; color: #5B5670">Por dentro do plano</span>
 <h2 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(2rem, 3.6vw, 3rem); line-height: 1.08; letter-spacing: -0.02em">É isso que você recebe no celular</h2>
-<p style="margin: 0; font-size: 18px; line-height: 1.55; color: #5B5670">Seu plano fica no Notion, organizado dia a dia. Abre, vê o conteúdo de hoje, grava e marca como feito.</p>
+<p class="demo__frase">Você não recebe apenas ideias de conteúdo. Você recebe o caminho para transformar cada ideia em uma publicação estratégica para o seu negócio.</p>
 </div>
-<div class="tour">
-<figure class="tour__item">
-<div class="phone"><img src="notion-1.webp" alt="Planejamento com os conteúdos de ontem, amanhã e dos próximos 7 dias" width="420" height="851" loading="lazy"></div>
-<figcaption><span class="tour__n">1</span><strong>Seu planejamento</strong>Os conteúdos da semana organizados por dia. Toque num card para abrir.</figcaption>
-</figure>
-<figure class="tour__item">
-<div class="phone"><img src="notion-2.webp" alt="Página de um conteúdo com status, data e formato" width="420" height="853" loading="lazy"></div>
-<figcaption><span class="tour__n">2</span><strong>Um conteúdo por dia</strong>Cada dia tem a sua página, com data, formato e status.</figcaption>
-</figure>
-<figure class="tour__item">
-<div class="phone phone--demo"><img src="notion-3.webp" alt="Conteúdo com o link da referência, a sugestão, a headline e a legenda prontas" width="420" height="844" loading="lazy">
-<button type="button" class="ref-hotspot" data-reel="" aria-label="Ver o reel de referência"><span>Ver o vídeo</span></button></div>
-<figcaption><span class="tour__n">3</span><strong>Referência e roteiro prontos</strong>O reel que viralizou, a sugestão para o seu nicho, a headline e a legenda.</figcaption>
-</figure>
-<figure class="tour__item">
-<div class="phone"><img src="notion-4.webp" alt="Placar da semana com conteúdos pendentes, em produção, feitos e postados" width="420" height="851" loading="lazy"></div>
-<figcaption><span class="tour__n">4</span><strong>Seu placar da semana</strong>Você vê o que está pendente, o que já gravou e o que já postou.</figcaption>
-</figure>
+<div class="demo__resto">
+<ol class="demo__passos">
+<li><strong>Seu planejamento</strong>Os conteúdos organizados por dia. Toque num card para abrir.</li>
+<li><strong>A referência que viralizou</strong>O link para o reel original, para você ver como foi feito.</li>
+<li><strong>Roteiro, headline e legenda</strong>Tudo escrito para o seu nicho, pronto para copiar.</li>
+<li><strong>Seu placar da semana</strong>O que está pendente, em produção e já postado.</li>
+</ol>
+<a href="#plano" style="align-self: flex-start; display: inline-flex; align-items: center; min-height: 56px; padding: 0 30px; border-radius: 999px; background: #1B1630; color: #FFFFFF; font-weight: 700; font-size: 17px; text-decoration: none">Quero meu plano</a>
+</div>
+<div class="demo__video">
+<div class="phone phone--video">
+<video src="como-funciona.mp4" poster="como-funciona-capa.webp" preload="none" playsinline controls width="720" height="1280" aria-label="Vídeo mostrando como funciona o plano no Notion"></video>
+<button type="button" class="play" aria-label="Assistir ao vídeo de como funciona"><svg width="34" height="34" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"></path></svg></button>
+</div>
+<span class="demo__legenda">Veja em 38 segundos como funciona</span>
 </div>
 </div>
 </section>
-
-<dialog class="reel-modal" aria-label="Reel de referência">
-<button type="button" class="reel-modal__close" aria-label="Fechar">&times;</button>
-<iframe title="Reel de referência no Instagram" src="about:blank" allow="autoplay; encrypted-media" loading="lazy"></iframe>
-</dialog>
 <script>
 (function(){
-  var dlg=document.querySelector('.reel-modal'); if(!dlg||!dlg.showModal) return;
-  var frame=dlg.querySelector('iframe');
-  document.querySelectorAll('.ref-hotspot').forEach(function(btn){
-    var url=(btn.getAttribute('data-reel')||'').trim();
-    var m=url.match(/instagram\.com\/(?:reel|reels|p)\/([A-Za-z0-9_-]+)/);
-    if(!m){btn.hidden=true;return;}
-    btn.addEventListener('click',function(){frame.src='https://www.instagram.com/reel/'+m[1]+'/embed/';dlg.showModal();});
-  });
-  function fechar(){dlg.close();}
-  dlg.querySelector('.reel-modal__close').addEventListener('click',fechar);
-  dlg.addEventListener('click',function(e){if(e.target===dlg)fechar();});
-  dlg.addEventListener('close',function(){frame.src='about:blank';});
+  var v=document.querySelector('.phone--video video'),b=document.querySelector('.phone--video .play');
+  if(!v||!b) return;
+  v.removeAttribute('controls');
+  b.addEventListener('click',function(){v.setAttribute('controls','');v.play();});
+  v.addEventListener('play',function(){b.hidden=true;});
+  if(window.fbq) v.addEventListener('play',function(){fbq('trackCustom','AssistiuVideo');},{once:true});
 })();
 </script>
 
